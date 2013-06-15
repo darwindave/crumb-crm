@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using WebMatrix.WebData;
 
 namespace CrumbCRM.Providers
 {
-    public class CustomMembershipProvider : MembershipProvider
+    public class CustomMembershipProvider : ExtendedMembershipProvider
     {
         [Inject]
         public IMembershipService MembershipService { get; set; }
@@ -167,6 +168,75 @@ namespace CrumbCRM.Providers
             throw new NotSupportedException();
         }
 
+        public override bool ResetPasswordWithToken(string s1, string s2)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override bool IsConfirmed(string s1)
+        {
+            throw new NotSupportedException();
+        }
+        
+        public override int GetUserIdFromPasswordResetToken(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override int GetPasswordFailuresSinceLastSuccess(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override DateTime GetPasswordChangedDate(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override DateTime GetLastPasswordFailureDate(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override DateTime GetCreateDate(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override System.Collections.Generic.ICollection<WebMatrix.WebData.OAuthAccountData> GetAccountsForUser(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override string GeneratePasswordResetToken(string s1, int i)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override bool DeleteAccount(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override string CreateUserAndAccount(string s1, string s2, bool b,  System.Collections.Generic.IDictionary<string, object> dict)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override string CreateAccount(string s1, string s2, bool b)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override bool ConfirmAccount(string s1)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override bool ConfirmAccount(string s1, string s2)
+        {
+            throw new NotSupportedException();
+        }
         #endregion
     }
 }
