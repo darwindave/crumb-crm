@@ -165,23 +165,29 @@ namespace CrumbCRM.Web.Controllers
 
         public ActionResult DisplaySideTasks(AreaType? areaType, int? itemId, bool detail=false)
         {
-            var userId = _membershipService.GetCurrentMember().UserId;
-            List<Task> model;
 
-            if (String.IsNullOrEmpty(itemId.ToString()))
+            var user = _membershipService.GetCurrentMember();
+            List<Task> model = null;
+
+            if(user != null)
             {
-                //get all tasks for this user
-                model = _taskService.GetAll().Where(x => x.AssignedID == userId).Take(5).ToList();
-            }
-            else
-            {
-                //get tasks for a specific item (lead or sale)
-                model = _taskService.GetAll().Where(x => x.AssignedID == userId && x.AreaType == areaType && x.ItemID == itemId).Take(5).ToList();
-            }
+                var userId = _membershipService.GetCurrentMember().UserId;
 
-            ViewBag.Detail = detail;
+                if (String.IsNullOrEmpty(itemId.ToString()))
+                {
+                    //get all tasks for this user
+                    model = _taskService.GetAll().Where(x => x.AssignedID == userId).Take(5).ToList();
+                }
+                else
+                {
+                    //get tasks for a specific item (lead or sale)
+                    model = _taskService.GetAll().Where(x => x.AssignedID == userId && x.AreaType == areaType && x.ItemID == itemId).Take(5).ToList();
+                }
 
+                ViewBag.Detail = detail;
+            }
             return PartialView("Controls/_TasksSideList", model);
+            
         }
     }
 }

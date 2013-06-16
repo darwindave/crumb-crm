@@ -62,8 +62,13 @@ namespace CrumbCRM.Web.Controllers
 
         public ActionResult DisplaySideTags(AreaType? areaType)
         {
-            var userId = _membershipService.GetCurrentMember().UserId;
             List<Tag> model = _tagService.GetByArea(areaType);
+
+            var user = _membershipService.GetCurrentMember();
+            if (user != null)
+            {
+                var userId = user.UserId;
+            }
 
             ViewBag.SelectedTags = TempData["SelectedTags"];
             TempData.Keep("SelectedTags");
